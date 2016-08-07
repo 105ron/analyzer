@@ -16,11 +16,12 @@ puts "#{sentence_count} sentences"
 puts "#{sentence_count / paragraph_count} sentences per paragrapgh (average)"
 puts "#{word_count / sentence_count} words per sentence (average)"
 
-text = "Los Angles has the nicest weather in the country."
+text = "Los Angles has the nicest online weather forecast in the country."
 words = text.scan(/\w+/)
 stopwords = %w{the a by on for or are with just but and to the my I has in some}
 keywords = words.select { |word| !stopwords.include?(word)}
 puts keywords.join(' ')
+puts ((keywords.length.to_f / words.length.to_f) *100).to_i
 
 
 def substrings(strings)
