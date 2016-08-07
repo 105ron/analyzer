@@ -1,10 +1,28 @@
 text = ''
-line_count = 0
-File.open("oliver.txt").each do |line|
-  line_count += 1
-  text << line
-end
-puts line_count
+lines = File.readlines("oliver.txt")
+line_count = lines.size
+text = lines.join
+total_characters = text.length
+total_characters_no_spaces = text.gsub(/\s/, '').length
+word_count = text.split.length
+sentence_count = text.split(/\.|\?|!/).length
+paragraph_count = text.split(/\n\n/).length
+puts "#{line_count} lines"
+puts "#{total_characters} characters"
+puts "#{total_characters_no_spaces} characters (excluding spaces)"
+puts "#{word_count} words"
+puts "#{paragraph_count} paragraphs"
+puts "#{sentence_count} sentences"
+puts "#{sentence_count / paragraph_count} sentences per paragrapgh (average)"
+puts "#{word_count / sentence_count} words per sentence (average)"
+
+text = "Los Angles has the nicest weather in the country."
+words = text.scan(/\w+/)
+stopwords = %w{the a by on for or are with just but and to the my I has in some}
+keywords = words.select { |word| !stopwords.include?(word)}
+puts keywords.join(' ')
+
+
 def substrings(strings)
   hash = {}
   strings = strings.downcase.scan(/[\w']+/) #split string into array of words
@@ -15,7 +33,5 @@ def substrings(strings)
 	  hash[words] = 1 #else create key with value 1
 	end
   end
-  hash.map.sort_by {|_key, value| value}
-  puts strings
+  hash.map.sort_by {|key, value| value}
 end
-puts substrings(text)
