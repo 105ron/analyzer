@@ -55,6 +55,6 @@ def substrings(strings)
 	  hash[words] = 1 #else create key with value 1
 	end
   end
-  hash.map.sort_by {|key, value| value}
+  hash.sort_by {|key, value| value}
 end
 
